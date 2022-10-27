@@ -1,0 +1,95 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(184, 163, 43, 0.705);
+}
+
+.container{
+    /* padding: 20px 30px; */
+    margin: 0 auto;
+  
+ 
+}
+
+.box{
+    overflow-y: auto;
+}
+
+.forms{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    box-shadow: 0 6px 7px -4px rgba(0,0,0,0.2);
+    
+}
+
+.main-title{
+    flex-direction: column;
+}
+.edu-sec{
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+.txt-primary{
+    color: #ffffff;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.txt-center{
+    text-align: center;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+    background-color: #84848477;
+    box-sizing: border-box;
+    /* border: 1px solid #d2d2d3; */
+    backdrop-filter: blur(10px);
+}
+
+.form .profile{
+    top: 0;
+    margin-top: -20rem;
+}
+
+Label{
+    color: rgba(0, 0, 0, 0.456);
+    font-weight: 600;
+}
+.bt{
+    border-top: 2px solid rgba(0,0,0,0.2);
+}
+
+
+span{
+    color: #e5e5e5;
+    cursor: pointer;
+}
+
+.red{
+    color: red;
+}
+
+.delete_member_style{
+    font-weight: 600;
+    color: red;
+    text-decoration: underline;
+}
+
+.material-symbols-outlined{
+    font-size: 25px;
+}
+
+@media screen and (max-width: 992px) {
+    .forms{
+        grid-template-columns: 1fr;
+    }
+
+    .form .profile{
+        margin: auto;
+    }
+
+}

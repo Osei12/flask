@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Home | . | VVT-AG
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+<br> <br>
+<div class="container">
+    <h1>Homepage</h1>
+    <!-- {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>        
+        {% endfor %} -->
+        <a class="btn btn-success mt-2 mb-2" href="{{url_for('create')}}" >Add new member</a>
+        <a class="btn btn-success mt-2 mb-2" href="{{url_for('dashboard')}}" >Dashboard</a>
+        
+        <h4>Member List</h4>
+    <div class="box ">
+        
+        <table id="table_id" class="table table-hover  table-striped ">
+            <thead style="background-color: rgba(150, 23, 63, 0.594);">
+                <!-- <th>Id </th> -->
+                <th>Surname </th>
+                <th>Other Names </th> 
+                <th>Gender </th>
+                <th>Date of birth </th>
+                <th>Occupation </th>
+                <th>Department </th>
+                 <!-- <th>Profile pic </th> -->
+                <th>Actions</th>
+
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <!-- <td>{{member.id}}</td> -->
+                    <td>{{member.surname}}</td>
+                    <td>{{member.other_names}}</td>
+                    <td>{{member.gender}}</td>
+                    <td>{{member.dob}}</td>
+                    <td>{{member.occupation}}</td>
+                    <td>{{member.department}}</td>
+                    <!-- <td>{{member.profile}}</td> -->
+                    <td>
+                         <a href="/{{member.id}}/update"><span class="material-symbols-outlined"> edit</span></a>
+                         <a href="{{url_for('delete', id=member.id)}}" type="button" class="btn> btn-primary" data-bs-toggle="modal" data-bs-target="#delete{{member.id}}">
+                            <span class="material-symbols-outlined red"  >   delete</span>
+                         </a>  
+                         <!-- <a href=""><span class="material-symbols-outlined"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                            delete
+                            </span></a> -->
+                    </td>
+                </tr>
+                <div  class="modal fade" id="delete{{member.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="/delete/{{member.id}}" method="POST">
+                            <div class="modal-body">
+                                Are you sure you want to delete <span class="delete_member_style">{{member.surname}}  {{member.other_names}}</span> from the records?<br>
+                              
+                            </div>
+                        
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input  type="submit" value="Delete" class="btn btn-primary">
+                            </div>
+                        </form>
+                        
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+   </div>
+        <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+
+
+
+  
+{% endblock content %}

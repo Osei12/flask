@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static',filename='images/logo.png' )}}" type="image/gif/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{{url_for('static' , filename='bootstrap/css/bootstrap.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='DataTables/datatables.css')}}">
+    <link rel="stylesheet" href="{{url_for('static' , filename='css/form.css')}}">
+    <link rel="stylesheet" href="{{url_for('static' , filename='css/navbar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static' , filename='css/dashboard.css')}}">
+    <title>  
+        
+    {% block title %}
+        
+    {% endblock title %}
+         </title>
+</head>
+<body>
+    
+        {% include 'navbar.html' %}
+        <div class="container">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>        
+            {% endfor %}
+        </div>
+        {% block content %}
+
+        
+        {% endblock content %}
+   
+    <script src="{{url_for('static', filename='DataTables/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='DataTables/datatables.js')}}"></script>
+    <script src="{{url_for('static' , filename='bootstrap/js/bootstrap.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <script src="{{url_for('static' ,filename='js/dashboard.js')}}"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );    
+    </script>
+        
+</body>
+</html>

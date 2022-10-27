@@ -1,0 +1,546 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Add Member
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+ 
+
+    <main class="main">
+        <div class="main-title">
+            <h4 class="txt-center txt-primary" >BIODATA</h4>
+                <form  method="POST" enctype="multipart/form-data" >
+                    <div class="forms">
+                    
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Surname</label>
+                                <input type="text" name="surname" value="{{member.surname}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Other names</label>
+                                <input type="text" name="other_names" value="{{member.other_names}}" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Gender</label>
+                              
+                           
+                                <select name="gender"  class="form-control" >
+                                    
+                                    <option value="">- choose one -</option>
+                                    <option value="Male"
+                                    {% if 'Male' in member.gender %}
+                                    selected
+                                    {% endif %}
+                                    >
+                                     Male</option>
+                                    <option value="Female"
+                                    {% if 'Female' in member.gender %}
+                                    selected
+                                    {% endif %}
+                                    >Female</option>
+                                </select>
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Date of birth</label>
+                           
+                                <input  type="date" name="dob" value="{{member.dob}}" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Occupation</label>
+                                <input type="text" name="occupation" value="{{member.occupation}}" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Inst. of work</label>
+                                <input type="text" name="inst_of_work" value="{{member.inst_of_work}}" class="form-control" >
+                            
+                                </div>
+                        
+                            
+                            
+                        </div>            
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Father's name</label>
+                                <input type="text" name="fathers_name" value="{{member.fathers_name}}" class="form-control" >
+                                
+                                </div>
+                                <label  class="form-label">Dead/Alive</label>
+                                <select name="motality_father" class="form-control">
+                                    <option value="">- choose one -</option>
+                                    <option value="Alive"
+                                    {% if 'Alive' in member.mortality_father %}
+                                    selected
+                                    {% endif %}
+                                    >Alive</option>
+                                    <option value="Deceased"
+                                    {% if 'Deceased' in member.mortality_father %}
+                                    selected
+                                    {% endif %}>Deceased</option>
+                                </select>
+                                <div class="mb-3">
+                                    <label  class="form-label">Mother's name</label>
+                                    <input type="text" name="mothers_name" value="{{member.mothers_name}}" class="form-control" >
+                                    
+                                    </div>
+                                    <label  class="form-label">Dead/Alive</label>
+                                    <select name="motality_mother" class="form-control">
+                                        <option value="">- choose one -</option>
+                                        <option value="Alive"
+                                        {% if 'Alive' in member.mortality_mother %}
+                                        selected
+                                        {% endif %}>Alive</option>
+                                        <option value="Deceased"
+                                        {% if 'Deceased' in member.mortality_mother %}
+                                        selected
+                                        {% endif %}>Deceased</option>
+                                    </select>
+                        
+                                    <label  class="form-label">Marital Status</label>
+                                    <select name="marital_status" class="form-control">
+                                        <option value="">- choose one -</option>
+                                        <option value="Single"
+                                        {% if 'Single' in member.marital_status %}
+                                        selected
+                                        {% endif %}>Single</option>
+                                        <option value="Married"
+                                        {% if 'Married' in member.marital_status %}
+                                        selected
+                                        {% endif %}>Married</option>
+                                        <option value="Divorced"
+                                        {% if 'Divorced' in member.marital_status %}
+                                        selected
+                                        {% endif %}>Divorced</option>
+                                    </select>
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Email Address</label>
+                                <input type="email" name="email" value="{{member.email}}" class="form-control" >
+                                </div>
+                        
+                            
+                            
+                        </div>            
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Phone number</label>
+                                <input type="text" name="mobile_number" value="{{member.phone}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Emergency contact person</label>
+                                <input type="text" name="emergency_contact_person" value="{{member.emergency_contact_name}}" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Relations</label>
+                                <input type="text" name="relations" value="{{member.relations}}" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Emergency contact no.</label>
+                                <input type="text" name="emergency_contact_no" value="{{member.emergency_contact_no}}" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">No. of children</label>
+                                <input type="text" name="no_of_children" value="{{member.no_of_children}}" class="form-control" >
+                                </div>
+                            
+                        
+                            
+                            
+                        </div>   
+                        <div class="form">
+                            
+                            {% if member.id %}
+                            <img class="profile" src="{{url_for('static', filename='images/profile/' + member.profile)}}"  alt="" width="200" height="180">
+                            {% else %}
+                                
+                            <img class="profile" src="{{url_for('static', filename='images/profile/default.jpg')}}"  alt="" width="200" height="180">
+                            {% endif %}
+                            <!-- <input name="Upload" type='file' />  -->
+                        </div>         
+                    </div>
+                    <div class="title"> 
+                        <h4 class="txt-center txt-primary" >GEOGRAPHICAL INFORMATION</h4>
+                    <div class="forms edu-sec bt">
+                        <div class="form">
+                            
+                                <div class="mb-3">
+                                <label  class="form-label">Place of residence</label>
+                                <input type="text" name="place_of_residence" value="{{member.place_of_residence}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">House No.</label>
+                                <input type="text"  name="house_no" value="{{member.house_no}}" class="form-control" >
+                                </div>
+                    
+                
+                        
+                            
+                            
+                        </div>            
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">GPS Address</label>
+                                <input type="text" name="gps_address" value="{{member.gps_address}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Prominent Landmark</label>
+                                <input type="text" name="prominent_landmark" value="{{member.prominent_landmark}}" class="form-control" >
+                                
+                                </div>
+                            
+                        </div>            
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Hometown</label>
+                                <input type="text" name="hometown" value="{{member.hometown}}" class="form-control" >
+                                
+                                </div>
+                                <label  class="form-label">Region</label>
+                                <select name="region" class="form-control" >
+                                    <option value=" ">- choose one -</option>
+                                    <option value="ASHANTI"
+                                    {% if 'ASHANTI' in member.region %}
+                                        selected
+                                    {% endif %}>ASHANTI</option>
+                                    <option value="UPPER WEST"
+                                    {% if 'UPPER WEST' in member.region %}
+                                    selected
+                                {% endif %}>UPPER WEST</option>
+                                    <option value="UPPER EAST"
+                                    {% if 'UPPER EAST' in member.region %}
+                                    selected
+                                {% endif %}>UPPER EAST</option>
+                                </select>
+    
+                        </div>   
+                    
+                            
+                    </div>
+                    <div class="title"> 
+                        <h4 class="txt-center txt-primary" >EDUCATIONAL BACKGROUND</h4>
+                    <div class="forms edu-sec bt">
+                        <div class="form">
+                    
+                                <div class="mb-3">
+                                <label  class="form-label">Level of education</label>
+                                <select name="level_of_education" class="form-control" >
+                                    <option value="">- Please select  -</option>
+                                    <option value="Basic"
+                                    {% if 'Basic' in member.level_of_education %}
+                                    selected
+                                {% endif %}>Basic</option>
+                                    <option value="Secondary"
+                                    {% if 'Secondary' in member.level_of_education %}
+                                    selected
+                                {% endif %}>Secondary</option>
+                                    <option value="Tertiary"
+                                    {% if 'Tertiary' in member.level_of_education %}
+                                    selected
+                                {% endif %}
+                                    >Tertiary</option>
+                                </select>
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Name of basic sch attended</label>
+                                <input type="text" name="name_basic_sch" value="{{member.name_of_basic_sch}}" class="form-control" >
+                                </div>
+                    
+                
+                        
+                            
+                        
+                        </div>            
+                        <div class="form">
+                    
+                                <div class="mb-3">
+                                <label  class="form-label">Name 2nd cycle sch attended</label>
+                                <input type="text" name="name_of_2nd_cycle_sch" value="{{member.name_of_2nd_cycle_sch}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Name of tertiary sch attended</label>
+                                <input type="text" name="name_tertiary_sch" value="{{member.name_of_tertiary_sch}}" class="form-control" >
+                                
+                                </div>
+                                
+                
+                        </div>            
+                        <div class="form">
+                    
+                                <div class="mb-3">
+                                <label  class="form-label">Courses Offered</label>
+                                <input type="text" name="courses_offered" value="{{member.courses_offered}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">Post  graduate courses offered</label>
+                                <input type="text" name="post_grad_courses" value="{{member.post_grad_courses_offered}}" class="form-control" >
+                                </div>
+
+                        </div>   
+                    
+                            
+                    </div>
+                    <div class="title"> 
+                        <h4 class="txt-center txt-primary" >RELIGIOUS DATA</h4>
+                    <div class="forms edu-sec bt">
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">When were you born again?</label>
+                                <input type="text" name="when_were_born_again" value="{{member.when_were_you_born_again}}" class="form-control" >
+                                
+                                </div>
+                                <div class="mb-3">
+                                <label  class="form-label">When did you join the church?</label>
+                                <input  type="date" name="when_did_you_join_the_church" value="{{member.when_did_you_join_the_church}}" class="form-control" >
+                                </div>
+                    
+                
+                        
+                            
+                    
+                        </div>            
+                        <div class="form">
+                        
+    
+                                <label  class="form-label">Are you baptized by immersion?</label>
+                                <select name="baptized_by_immersion" class="form-control" >
+                                    <option >- Please select  -</option>
+                                    <option value="Yes"
+                                    {% if 'Yes' in member.baptized_by_immersion %}
+                                    selected
+                                {% endif %}>Yes</option>
+                                    <option value="No"
+                                    {% if 'No' in member.baptized_by_immersion %}
+                                    selected
+                                {% endif %}>No</option>
+                                
+                                </select>
+                                <div class="mb-3">
+                                <label  class="form-label">Are you baptized by the Holy Spirit?</label>
+                                <select name="baptized_by_holy_spirit" class="form-control" >
+                                    <option >- Please select  -</option>
+                                    <option value="Yes"
+                                    {% if 'Yes' in member.baptized_by_holy_spirit %}
+                                    selected
+                                {% endif %}>Yes</option>
+                                    <option value="No"
+                                    {% if 'No' in member.baptized_by_holy_spirit %}
+                                    selected
+                                {% endif %}>No</option>
+                                
+                                </select>
+                                
+                                </div>
+                                
+                    
+                        </div>            
+                        <div class="form">
+                        
+                                <div class="mb-3">
+                                <label  class="form-label">Are you active in any department?</label>
+                                <select name="active_department" class="form-control" >
+                                    <option >- Please select  -</option>
+                                    <option value="Yes"
+                                    {% if 'Yes' in member.active_in_department %}
+                                    selected
+                                {% endif %}>Yes</option>
+                                    <option value="No"
+                                    {% if 'No' in member.active_in_department %}
+                                    selected
+                                {% endif %}>No</option>
+                                
+                                </select>
+                                
+                                </div>
+                                <!-- <div class="mb-3">
+                                <label  class="form-label">Password</label>
+                                <input type="text" class="form-control" >
+                                </div> -->                                         
+                        
+                        </div>   
+                    
+                            
+                    </div>
+                    <div class="title"> 
+                        <h4 class="txt-center txt-primary" >DEPARTMENTS</h4>
+                    <div class="forms edu-sec bt">
+                        <div class="form">
+                        
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Men Ministry" class="form-check-input" id="exampleCheck1"
+                                    {% if  'Men Ministry'  in member.department %}
+                                    checked
+                                    {% endif %} >
+                                    <label class="form-check-label" for="exampleCheck1">Men Ministry</label>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Women Ministry" class="form-check-input" id="exampleCheck1"
+                                    
+                                    {% if  'Women Ministry'  in member.department %}
+                                    checked
+                                    {% endif %}>
+                                    <label class="form-check-label" for="exampleCheck1">Women Ministry</label>
+                                </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Youth Ministry" class="form-check-input" id="exampleCheck1"
+                                        
+                                        {% if 'Youth Ministry' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1"> Youth Ministry</label>
+                                    </div>
+
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Missions Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Missions Department' in member.department %}
+                                        checked
+                                        {% endif %}
+                                        >
+                                        <label class="form-check-label" for="exampleCheck1">Missions Department</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Welfare Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Welfare Department' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Welfare Department</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Accounts Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Accounts Department' in member.department %}
+                                        
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Accounts Department</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Royal Ranger Ministry" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Royal Ranger Ministry' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Royal Ranger Ministry</label>
+                                    </div>
+                            
+    
+                        </div>            
+                        <div class="form">
+                            
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Sunday School Department" class="form-check-input" id="exampleCheck1"
+                                    {% if 'Sunday School Department' in member.department %}
+                                    checked
+                                    {% endif %}>
+                                    <label class="form-check-label" for="exampleCheck1">Sunday School Department </label>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Young Single (Y/S)" class="form-check-input" id="exampleCheck1"
+                                    {% if 'Young Single (Y/S)' in member.department %}
+                                    checked
+                                    {% endif %}>
+                                    <label class="form-check-label" for="exampleCheck1">Young Single (Y/S)</label>
+                                </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Valley Vine Praise" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Valley Vine Praise' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Valley Vine Praise</label>
+                                    </div>
+
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Choral Choir" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Choral Choir' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1"> Choral Choir</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Instrumentals Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Instrumentals Department' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1"> Instrumentals Department</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Church Board" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Church Board' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1"> Church Board</label>
+                                    </div>                            
+                        </div>            
+                        <div class="form">
+                            
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Children Ministry" class="form-check-input" id="exampleCheck1"
+                                    {% if 'Children Ministry' in member.department %}
+                                    checked
+                                    {% endif %}>
+                                    <label class="form-check-label" for="exampleCheck1">Children Ministry</label>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="department" value="Youth Choir" class="form-check-input" id="exampleCheck1"
+                                    {% if 'Youth Choir' in member.department %}
+                                    checked
+                                    {% endif %}>
+                                    <label class="form-check-label" for="exampleCheck1">Youth Choir</label>
+                                </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Praises And worship Team" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Praises And worship Team' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Praises And worship Team</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Joy Ministry" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Joy Ministry' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Joy Ministry</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Protocol Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Protocol Department' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Protocol Department</label>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" name="department" value="Prayer Tower Department" class="form-check-input" id="exampleCheck1"
+                                        {% if 'Prayer Tower Department' in member.department %}
+                                        checked
+                                        {% endif %}>
+                                        <label class="form-check-label" for="exampleCheck1">Prayer Tower Department</label>
+                                    </div>                          
+                        </div>   
+                        <label class="form-check-label txt-primary" for="exampleCheck1">Upload image</label>
+                    <input name="upload"  type='file' />     
+                    <input type="text" name="upload-update" value="{{member.profile}}">                    
+                    </div>                
+                    <button type="submit" class="btn btn-dark mt-4">Submit Form</button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock content %}
+    
+    
