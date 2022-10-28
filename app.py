@@ -3,13 +3,16 @@ from ext import db, migrate
 from werkzeug.utils import secure_filename
 import uuid as uuid
 import os
+import io
+import xlwt
+
 
 
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///records.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///records.db'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:dev123@localhost/highdb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://qfsfvbphyhsric:f6fea13cc4fa374803557d838a84043eaeddf2fabb1d957ca2c46cb2c9257ca3@ec2-52-70-45-163.compute-1.amazonaws.com:5432/d1ib009kvn4e4i'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://qfsfvbphyhsric:f6fea13cc4fa374803557d838a84043eaeddf2fabb1d957ca2c46cb2c9257ca3@ec2-52-70-45-163.compute-1.amazonaws.com:5432/d1ib009kvn4e4i'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'SJKHSHGYGTFER562768'
 
@@ -23,10 +26,14 @@ migrate.init_app(app,db)
 
 
 ## ROUTES
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET','POST'])
 def home():
+    return render_template('index.html')
+
+@app.route('/member_list', methods=['GET', 'POST'])
+def member_list():
     members = MemberRecords.query.all()
-    return render_template('index.html', members=members)
+    return render_template('member_list.html', members=members)
 
 @app.route('/delete/<int:id>', methods=['GET', 'POST'])
 def delete(id):
@@ -255,6 +262,26 @@ def create():
 @app.route('/dashboard', methods=['GET','POST'])
 def dashboard():
     return render_template('dashboard.html')
+
+
+@app.route('/download/report/excel')
+def download_report():
+    
+    
+    all_members = MemberRecords.query.all()
+
+    output = io.BytesIO()
+    workbook = xlwt.Workbook()
+    
+    sh = workbook.add_sheet('Member_report')
+    
+    
+    sh.write(0, 0, 'ID')
+    sh.write(0, 1, 'Surname')
+    sh.write(0, 2, 'Other Names')
+    sh.write(0, 3, 'Gender')
+    
+    return render_template('index.html', all_members=all_members)
 
 from models import MemberRecords
 

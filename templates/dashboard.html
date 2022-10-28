@@ -4,6 +4,8 @@
 Dashboard . vvt-ag
 {% endblock %}
 
+
+
 {% block content %}
 <div class="grid-container">
 
@@ -37,17 +39,18 @@ Dashboard . vvt-ag
           <li class="sidebar-list-item dashboard-active">
             <span class="material-icons-outlined">dashboard</span> Dashboard
           </li>
-          <li class="sidebar-list-item">
-            <span class="material-icons-outlined">inventory_2</span> Users
-          </li>
+          <a href="{{url_for('member_list')}}">
           <li class="sidebar-list-item">
             <span class="material-icons-outlined">fact_check</span> Records
           </li>
+        </a>
+          <a href="{{url_for('create')}}">
           <li class="sidebar-list-item"> 
             <span class="material-symbols-outlined">
               person_add
               </span> Add new member
           </li>
+        </a>
           <li class="sidebar-list-item">
             <span class="material-symbols-outlined">
               group_add

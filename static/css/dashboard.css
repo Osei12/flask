@@ -3,7 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     /* background-color: #e6e8ed; */
-    background-color: rgba(184, 163, 43, 0.705);
+    background-color: rgba(255, 255, 255, 0.705);
     color: #666666;
     font-family: "Montserrat", sans-serif;
   }
@@ -77,12 +77,17 @@ body {
     grid-area: sidebar;
     height: 100%;
     background-color: #21232d;
-    color: #9799ab;
+    /* background-color: #c5da00; */
+    color: #9799ab !important;
     overflow-y: auto;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
   }
   
+  #sidebar a{
+    color: #9799ab;
+  }
+
   .sidebar-title {
     display: flex;
     justify-content: space-between;
@@ -109,6 +114,7 @@ body {
   
   .sidebar-list-item {
     padding: 20px 20px 20px 20px;
+  
   }
   
   .sidebar-list-item:hover {

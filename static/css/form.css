@@ -3,7 +3,7 @@ body{
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: rgba(184, 163, 43, 0.705);
+    /* background-color: rgba(184, 163, 43, 0.705); */
 }
 
 .container{

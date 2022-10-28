@@ -1,4 +1,4 @@
-<nav class="navbar d-flex navbar-expand-lg bg-dark sticky justify-content-center  navbar-dark">
+<nav class="navbar nav-color d-flex navbar-expand-lg bg-dark sticky justify-content-center  navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{url_for('home')}}">
         <img src="{{url_for('static',filename='images/logo.png' )}}" alt="">
@@ -12,8 +12,12 @@
             <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('create')}}">Register</a>
+            <a class="nav-link  " href="">Login</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Sign up</a>
+          </li>
+       
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
           </li>
